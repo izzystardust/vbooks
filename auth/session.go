@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"sync"
 	"time"
-	"vbooks/apperr"
+
+	"git.sr.ht/~izzy/vbooks/apperr"
 
 	uuid "github.com/satori/go.uuid"
 )

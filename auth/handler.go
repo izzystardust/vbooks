@@ -3,7 +3,8 @@ package auth
 import (
 	"log"
 	"net/http"
-	"vbooks/apperr"
+
+	"git.sr.ht/~izzy/vbooks/apperr"
 )
 
 type Handler func(user string, w http.ResponseWriter, r *http.Request) *apperr.Error

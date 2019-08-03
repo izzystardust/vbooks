@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 	"time"
-	"vbooks/apperr"
-	"vbooks/auth"
+
+	"git.sr.ht/~izzy/vbooks/apperr"
+	"git.sr.ht/~izzy/vbooks/auth"
 )
 
 func handleLogin(w http.ResponseWriter, r *http.Request) *apperr.Error {

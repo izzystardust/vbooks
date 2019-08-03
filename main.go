@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"vbooks/apperr"
-	"vbooks/auth"
+
+	"git.sr.ht/~izzy/vbooks/apperr"
+	"git.sr.ht/~izzy/vbooks/auth"
 )
 
 type AppHandler func(w http.ResponseWriter, r *http.Request) *apperr.Error
