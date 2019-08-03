@@ -47,17 +47,14 @@ func NewSession(user Credentials) (string, error) {
 	if err := verifyLogin(user); err != nil {
 		return "", err
 	}
-	sessionToken, err := uuid.NewV4()
-	if err != nil {
-		return "", &apperr.Error{err, http.StatusInternalServerError}
-	}
+	sessionToken := uuid.NewV4().String()
 
-	sessions[sessionToken.String()] = session{
+	sessions[sessionToken] = session{
 		user.Username,
 		time.Now().Add(ExpirationTime),
 	}
 
-	return sessionToken.String(), nil
+	return sessionToken, nil
 }
 
 func verifyLogin(user Credentials) error {
