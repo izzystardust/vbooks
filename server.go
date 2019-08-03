@@ -1,4 +1,4 @@
-package server
+package vbooks
 
 import (
 	"encoding/json"

@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"git.sr.ht/~izzy/vbooks/server"
+	"git.sr.ht/~izzy/vbooks"
 )
 
 func main() {
-	log.Fatal(server.Start(":3001"))
+	log.Fatal(vbooks.Start(":3001"))
 }
