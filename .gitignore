@@ -1,5 +1,5 @@
 .DS_Store
-
 vbooks
 gin-bin
-
+vbooks-server
+cmd/vbooks-server/vbooks-server
