@@ -2,10 +2,16 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"git.sr.ht/~izzy/vbooks"
 )
 
 func main() {
-	log.Fatal(vbooks.Start(":3001"))
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = "3001"
+	}
+
+	log.Fatal(vbooks.Start(":" + port))
 }
