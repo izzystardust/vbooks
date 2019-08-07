@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"encoding/json"
 	"errors"
 	"net/http"
 	"sync"
@@ -42,19 +43,34 @@ type session struct {
 	expires time.Time
 }
 
+type Token struct {
+	Session string
+	Expires time.Time
+}
+
+func (t Token) MarshalJSON() ([]byte, error) {
+	basicToken := struct {
+		SessionToken string `json:"sessiontoken"`
+		Expires      string `json:"expires"`
+	}{
+		SessionToken: t.Session,
+		Expires:      t.Expires.Format(time.RFC3339),
+	}
+
+	return json.Marshal(basicToken)
+}
+
 // NewSession creates a new session and inserts it into the session table
-func NewSession(user Credentials) (string, error) {
+func NewSession(user Credentials) (*Token, error) {
 	if err := verifyLogin(user); err != nil {
-		return "", err
+		return nil, err
 	}
 	sessionToken := uuid.NewV4().String()
+	expires := time.Now().Add(ExpirationTime)
 
-	sessions[sessionToken] = session{
-		user.Username,
-		time.Now().Add(ExpirationTime),
-	}
+	sessions[sessionToken] = session{user.Username, expires}
 
-	return sessionToken, nil
+	return &Token{sessionToken, expires}, nil
 }
 
 func verifyLogin(user Credentials) error {

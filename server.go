@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 
 	"git.sr.ht/~izzy/vbooks/apperr"
 	"git.sr.ht/~izzy/vbooks/auth"
@@ -59,7 +58,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request, c Config) error {
 		return apperr.New(err, "", http.StatusBadRequest)
 	}
 
-	session, err := auth.NewSession(creds)
+	token, err := auth.NewSession(creds)
 	if err != nil {
 		if httperr, ok := err.(*apperr.Error); ok {
 			return httperr
@@ -67,10 +66,17 @@ func handleLogin(w http.ResponseWriter, r *http.Request, c Config) error {
 		return err
 	}
 
+	jsonResponse, err := json.Marshal(token)
+	if err != nil {
+		return err
+	}
+
+	w.Write(jsonResponse)
+
 	http.SetCookie(w, &http.Cookie{
 		Name:    auth.SessionCookieName,
-		Value:   session,
-		Expires: time.Now().Add(auth.ExpirationTime),
+		Value:   token.Session,
+		Expires: token.Expires,
 	})
 
 	log.Println("User '" + creds.Username + "' logged in")
