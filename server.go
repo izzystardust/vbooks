@@ -26,6 +26,7 @@ type AppHandler struct {
 }
 
 func (ah AppHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") //TODO: debug only
 	if err := ah.Handler(w, r, ah.Config); err != nil {
 		apperr.HTTPError(w, err)
 		log.Println(err)
