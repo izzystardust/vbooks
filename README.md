@@ -27,7 +27,7 @@ out in a location outside of GOPATH or compiled with `GO111MODULE=on`.
 Live reload of the server while editing code can be accomplished with
 [codegangsta/gin](https://github.com/codegangsta/gin) by running
 
-    gin --build cmd/vbooks-server
+    gin --build cmd/vbooks-server --excludeDir client
 
 in the root of the repository.
 
