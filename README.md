@@ -3,12 +3,15 @@
 This is the backend server for the vbooks project - a place for small 
 communities to share PDFs, ePubs, and other reading resources with each other.
 
-The repository frontend server can be found at 
-[~izzy/vbooks-ui](https://git.sr.ht/~izzy/vbooks-ui).
+
+## Resources
 
 Planning, feature requests, and bugs live at 
 [our issue tracker](https://todo.sr.ht/~izzy/vbooks).
 
+[Send patches](https://git-send-email.io/) and questions to
+[~izzy/vbooks-dev@lists.sr.ht](https://lists.sr.ht/~izzy/vbooks-dev). When 
+sending patches, lease use `--subject-prefix PATCH backend` for clarity.
 
 ## Backend
 
@@ -44,8 +47,3 @@ Run `npm install` to get all the dependencies.
 To run the development frontend, run `npm run dev` from the `client` directory.
 
 
-## Resources
-
-[Send patches](https://git-send-email.io/) and questions to
-[~izzy/vbooks-dev@lists.sr.ht](https://lists.sr.ht/~izzy/vbooks-dev). When 
-sending patches, lease use `--subject-prefix PATCH backend` for clarity.
