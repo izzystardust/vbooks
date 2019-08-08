@@ -10,14 +10,19 @@ Planning, feature requests, and bugs live at
 [our issue tracker](https://todo.sr.ht/~izzy/vbooks).
 
 
-## Building
+## Backend
+
+### Building
 
 Dependencies:
 * go (>=1.12)
 
     cd $REPO/cmd/vbooks-server && go build
 
-### Live Reloading for Development
+Because the vbooks project is using go modules, the repository should be checked
+out in a location outside of GOPATH or compiled with `GO111MODULE=on`.
+
+#### Live Reloading for Development
 
 Live reload of the server while editing code can be accomplished with
 [codegangsta/gin](https://github.com/codegangsta/gin) by running
@@ -25,6 +30,19 @@ Live reload of the server while editing code can be accomplished with
     gin --build cmd/vbooks-server
 
 in the root of the repository.
+
+## Frontend
+
+The frontend code lives in `client/`
+
+Dependencies:
+* npm
+
+Run `npm install` to get all the dependencies.
+
+
+To run the development frontend, run `npm run dev` from the `client` directory.
+
 
 ## Resources
 
